@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Login - JharSewa</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function loginAdmin(event) {
+      event.preventDefault();
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      if (username === "admin" && password === "123") {
+        localStorage.setItem("jharsewa_admin_loggedin", "true");
+        window.location.href = "admin-dashboard.html";
+      } else {
+        alert("Invalid admin credentials");
+      }
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>JharSewa – Admin Login</h1>
+  </header>
+  <main>
+    <section class="form-section">
+      <h2>Admin Panel Access</h2>
+      <form onsubmit="loginAdmin(event)">
+        <label>Username:</label><br>
+        <input type="text" id="username" placeholder="Admin username" required><br><br>
+        <label>Password:</label><br>
+        <input type="password" id="password" placeholder="Admin password" required><br><br>
+        <button type="submit">Login</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

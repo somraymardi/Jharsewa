@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard - JharSewa</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    if (localStorage.getItem("jharsewa_admin_loggedin") !== "true") {
+      alert("Admin not logged in.");
+      window.location.href = "admin-login.html";
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Admin Dashboard</h1>
+    <nav>
+      <a href="admin-dashboard.html">Dashboard</a>
+      <a href="admin-logout.html">Logout</a>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <h2>Received Applications</h2>
+      <table border="1" width="100%" cellpadding="10">
+        <tr>
+          <th>Application ID</th>
+          <th>Name</th>
+          <th>Service</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+        <tr>
+          <td>JSR001</td>
+          <td>Rahul Kumar</td>
+          <td>Caste Certificate</td>
+          <td>Pending</td>
+          <td>
+            <a href="admin-view.html">View</a> |
+            <button>Approve</button> |
+            <button>Reject</button>
+          </td>
+        </tr>
+      </table>
+    </section>
+  </main>
+</body>
+</html>
