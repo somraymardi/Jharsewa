@@ -1,43 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Apply for Service - JharSewa</title>
-  <link rel="stylesheet" href="style.css">
-  <script>
-    if (localStorage.getItem("jharsewa_loggedin") !== "true") {
-      alert("Please login to access this page.");
-      window.location.href = "login.html";
-    }
-  </script>
-</head>
-<body>
-  <header>
-    <h1>Apply for Certificate</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="logout.html">Logout</a>
-    </nav>
-  </header>
-  <main>
-    <section class="form-section">
-      <h2>Application Form</h2>
-      <form>
-        <label>Full Name:</label><br>
-        <input type="text" placeholder="Enter full name"><br><br>
-        <label>Aadhaar Number:</label><br>
-        <input type="text" placeholder="Enter Aadhaar"><br><br>
-        <label>Select Service:</label><br>
-        <select>
-          <option>Caste Certificate</option>
-          <option>Income Certificate</option>
-          <option>Residence Certificate</option>
-        </select><br><br>
-        <label>Upload Document (PDF):</label><br>
-        <input type="file"><br><br>
-        <button type="submit">Submit Application</button>
-      </form>
-    </section>
-  </main>
-</body>
-</html>
+<form onsubmit="submitApplication(event)">
+  <input type="text" id="name" placeholder="Name" required>
+  <input type="text" id="aadhaar" placeholder="Aadhaar" required>
+  <select id="service">
+    <option>Caste Certificate</option>
+    <option>Income Certificate</option>
+  </select>
+  <button type="submit">Apply</button>
+</form>
+
+<script>
+function submitApplication(event) {
+  event.preventDefault();
+  const newApp = {
+    name: document.getElementById("name").value,
+    aadhaar: document.getElementById("aadhaar").value,
+    service: document.getElementById("service").value,
+    date: new Date().toLocaleDateString(),
+    status: "Pending"
+  };
+  let apps = JSON.parse(localStorage.getItem("applications")) || [];
+  apps.push(newApp);
+  localStorage.setItem("applications", JSON.stringify(apps));
+  alert("Application submitted!");
+  window.location.href = "index.html";
+}
+</script>
