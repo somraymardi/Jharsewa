@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Application Receipt - JharSewa</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .receipt {
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 20px;
+      border: 2px solid #004d40;
+      background: #f9f9f9;
+    }
+    .receipt h2 {
+      text-align: center;
+      color: #004d40;
+    }
+    .receipt p {
+      font-size: 16px;
+      margin: 10px 0;
+    }
+    .receipt .buttons {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .receipt button {
+      padding: 10px 20px;
+      background: #004d40;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>JharSewa – Application Receipt</h1>
+  </header>
+  <main>
+    <div class="receipt">
+      <h2>Caste Certificate Application Receipt</h2>
+      <p><strong>Application ID:</strong> JSR20250704001</p>
+      <p><strong>Applicant Name:</strong> Rahul Kumar</p>
+      <p><strong>Service:</strong> Caste Certificate</p>
+      <p><strong>Submission Date:</strong> 04 July 2025</p>
+      <p><strong>Status:</strong> Pending</p>
+      <div class="buttons">
+        <button onclick="window.print()">Print</button>
+        <button>Download PDF</button>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <p>&copy; 2025 JharSewa</p>
+  </footer>
+</body>
+</html>
