@@ -1,48 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Admin Dashboard - JharSewa</title>
-  <link rel="stylesheet" href="style.css">
-  <script>
-    if (localStorage.getItem("jharsewa_admin_loggedin") !== "true") {
-      alert("Admin not logged in.");
-      window.location.href = "admin-login.html";
-    }
-  </script>
-</head>
-<body>
-  <header>
-    <h1>Admin Dashboard</h1>
-    <nav>
-      <a href="admin-dashboard.html">Dashboard</a>
-      <a href="admin-logout.html">Logout</a>
-    </nav>
-  </header>
-  <main>
-    <section>
-      <h2>Received Applications</h2>
-      <table border="1" width="100%" cellpadding="10">
-        <tr>
-          <th>Application ID</th>
-          <th>Name</th>
-          <th>Service</th>
-          <th>Status</th>
-          <th>Action</th>
-        </tr>
-        <tr>
-          <td>JSR001</td>
-          <td>Rahul Kumar</td>
-          <td>Caste Certificate</td>
-          <td>Pending</td>
-          <td>
-            <a href="admin-view.html">View</a> |
-            <button>Approve</button> |
-            <button>Reject</button>
-          </td>
-        </tr>
-      </table>
-    </section>
-  </main>
+<body onload="loadApplications()">
+<div id="applicationTable"></div>
+<script>
+function loadApplications() {
+  const apps = JSON.parse(localStorage.getItem("applications")) || [];
+  let table = "<table border='1'><tr><th>Name</th><th>Service</th><th>Status</th><th>Action</th></tr>";
+  apps.forEach((app, i) => {
+    table += `<tr>
+      <td>${app.name}</td>
+      <td>${app.service}</td>
+      <td>${app.status}</td>
+      <td>
+        <button onclick="approve(${i})">Approve</button>
+        <button onclick="reject(${i})">Reject</button>
+      </td>
+    </tr>`;
+  });
+  table += "</table>";
+  document.getElementById("applicationTable").innerHTML = table;
+}
+function approve(i) {
+  const apps = JSON.parse(localStorage.getItem("applications"));
+  apps[i].status = "Approved";
+  localStorage.setItem("applications", JSON.stringify(apps));
+  alert("Approved!");
+  window.location.href = "certificate.html";
+}
+function reject(i) {
+  const apps = JSON.parse(localStorage.getItem("applications"));
+  apps[i].status = "Rejected";
+  localStorage.setItem("applications", JSON.stringify(apps));
+  loadApplications();
+}
+</script>
 </body>
-</html>
